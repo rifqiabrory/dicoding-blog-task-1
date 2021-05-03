@@ -1,0 +1,72 @@
+.wrapper {
+  display: grid;
+  /* menggunakan grid-template-*
+     Untuk menetapkan ukuran baris dan kolom pada grid
+     columns ke-2 : 100px, dan
+     rows ke-1 : 50px
+
+     Satuan fr (fraction) merepresentasikan sebuah pecahan dari ruang kosong yang tersedia pada grid.
+  */
+  /* grid-template-columns: 200px 100px 200px;
+  grid-template-rows: 50px 100px; */
+  /* atau degan satuan fr */
+  grid-template-columns: repeat(3, 1fr); /* atau 1fr 0.5fr 1fr; */
+  /* grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr; 
+  menjadi 
+  grid-template-columns: repeat(3, 1fr 2fr); */
+  /* grid-template-rows: 50px 100px; */
+
+  /* style pendukung saja */
+  padding: 8px;
+  background-color: antiquewhite;
+  border: 1px dashed black;
+  /* untuk memberikan jarak, yang biasa nya menggunakan margin, sedangkan kali ini menggunakan *-gap */
+  row-gap: 16px;
+  column-gap: 10px;
+  /* atau dengan shorthand */
+  /* gap: 16px 10px; */
+}
+
+/* Styling pendukung */
+.wrapper div {
+  padding: 32px;
+  border: 1px solid black;
+}
+
+/* coloring */
+.box1,
+.box4 {
+  background-color: mediumseagreen;
+}
+
+.box2,
+.box6 {
+  background-color: steelblue;
+}
+
+.box3,
+.box5 {
+  background-color: gold;
+}
+
+.box1 {
+  grid-column-start: 1; /* box1 akan dimulai dari kolom garis pertama */
+  grid-column-end: 3; /* dan berakhir di kolom garis ketiga */
+}
+.box2 {
+  grid-column-start: 3; /* box2 akan dimulai dari kolom garis ketiga */
+  grid-row-start: 1; /* dan baris garis pertama */
+  grid-row-end: 3; /* kemudian berakhir di baris garis ketiga */
+}
+.box3 {
+  grid-column-start: 1; /* box1 akan dimulai dari kolom garis pertama */
+  grid-column-end: 3; /* dan berakhir di kolom garis ketiga */
+}
+/* 
+    Note::
+    Dengan menetapkan nilai 1fr 1fr 1fr pada grid-template-column, 
+    itu berarti kita membuat grid container memiliki lebar 3fr (1+1+1), 
+    dan membaginya menjadi 3 pecahan kolom. Otomatis, 
+    karena semua kolom kita terapkan dengan 1fr (artinya 1 pecahan), 
+    maka tiap kolom akan memiliki lebar yang sama.
+*/
