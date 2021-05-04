@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Off Canvas Menu</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+      }
+
+      html,
+      body,
+      main {
+        height: 100%;
+        width: 100%;
+      }
+
+      #drawer {
+        width: 100%; /* atau 50% */
+        height: 100%;
+        position: absolute;
+        /* menyembunyikan #drawer -100% (sesuai dengan ukuran lebar drawer) ke kiri */
+        transform: translate(-100%, 0);
+        transition: transform 0.3s ease-in-out;
+        background-color: #111;
+      }
+
+      #drawer.open {
+        transform: translate(0, 0);
+      }
+
+      /* styling pendukung */
+      main {
+        padding: 16px;
+      }
+
+      #drawer ul {
+        list-style-type: none;
+        padding: 0 25px;
+      }
+
+      #drawer li {
+        padding: 5px 0px;
+      }
+
+      #drawer a {
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+      }
+
+      #hamburger {
+        font-size: 32px;
+        text-decoration: none;
+        color: black;
+      }
+
+      /* responsive drawer navigation */
+      @media screen and (min-width: 600px) {
+        body {
+          display: grid;
+          grid-template-columns: 300px auto;
+        }
+        #drawer {
+          position: relative;
+          transform: translate(0, 0);
+        }
+        #hamburger {
+          display: none;
+        }
+        #close {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav id="drawer">
+      <div style="float: right;margin-top: 15px;margin-right: 15px;">
+        <a id="close" href="#">X</a>
+      </div>
+      <ul>
+        <li><a href="#">Menu Item 1</a></li>
+        <li><a href="#">Menu Item 2</a></li>
+        <li><a href="#">Menu Item 3</a></li>
+        <li><a href="#">Menu Item 4</a></li>
+      </ul>
+    </nav>
+    <main>
+      <a id="hamburger" href="#">☰</a>
+      <h1>This is main content</h1>
+      <p>Tekan pada tombol hamburger button untuk membuka Menu</p>
+    </main>
+    <script>
+      const hamburgerButtonElement = document.querySelector("#hamburger");
+      const drawerElement = document.querySelector("#drawer");
+      // hide drawer menggunakan element main atau custom close button
+      const mainElement = document.querySelector("main");
+      const closeElement = document.querySelector("#close");
+
+      hamburgerButtonElement.addEventListener("click", event => {
+        drawerElement.classList.toggle("open");
+        event.stopPropagation(); //diperlukan untuk mencegah terjadinya perambatan event yang sama.
+      });
+
+      closeElement.addEventListener("click", event => {
+        drawerElement.classList.remove("open");
+        event.stopPropagation();
+      });
+    </script>
+  </body>
+</html>
